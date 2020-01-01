@@ -1,0 +1,56 @@
+<mat-card>
+<form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()"  class="example-form">
+   
+    <div class="form-group required">
+     
+      
+      <mat-form-field appearance="outline">
+        <mat-label>UserName</mat-label>
+        <input matInput placeholder="UserName"   formControlName="UserName">
+        <mat-hint class="text-danger" *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.required">This field is mandatory.</mat-hint>
+    </mat-form-field>
+    
+    </div>
+    <div class="form-group">
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+      <input matInput placeholder="Email" formControlName="Email">
+      <mat-hint class="text-danger" *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">Invalid email address.</mat-hint>
+    </mat-form-field>
+     
+    </div>
+    <div class="form-group">
+        <mat-form-field appearance="outline">
+            <mat-label>Full Name</mat-label>
+     
+      <input matInput placeholder="Full Name"  formControlName="FullName">
+    </mat-form-field>
+    </div>
+    <div formGroupName="Passwords">
+      <div class="form-group required">
+        <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input   matInput type="password" placeholder="Password"  formControlName="Password">
+        <mat-hint  class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">This field is mandatory.</mat-hint >
+        <mat-hint  class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.minlength">Minimum 4 characters required.</mat-hint >
+      </mat-form-field>
+      </div>
+      <div class="form-group required">
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm Password</mat-label>
+        <input matInput  type="password" placeholder="Confirm Password"  formControlName="ConfirmPassword">
+        <mat-hint class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">This field is mandatory.</mat-hint>
+        <mat-hint class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Confirm Password does not match.</mat-hint>
+      </mat-form-field>
+    
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-8 offset-md-2">
+        <button mat-raised-button type="submit" class="btn btn-lg btn-block" [disabled]="!service.formModel.valid">Sign Up</button>
+      </div>
+    </div>
+
+  </form>
+</mat-card>
